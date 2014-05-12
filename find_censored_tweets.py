@@ -10,7 +10,7 @@ def notice_tweets_for(notice_id):
     notice_tweets_path = os.path.join(
         config.STORE_DIR, 'notice_tweets', notice_id)
     with open(notice_tweets_path) as fp:
-        return [ t for t in fp.read().split('\n') if len(t) > 0 ]
+        return [t for t in fp.read().split('\n') if len(t) > 0]
 
 def check_withheld_on_twitter(tweet):
     try:
@@ -50,12 +50,3 @@ def is_withheld(tweet):
         return withheld_from_twitter
     else:
         return withheld_from_filesystem
-
-notice_ids = os.listdir(os.path.join(config.STORE_DIR, 'notice_tweets'))
-
-notice_tweets = util.flatten([notice_tweets_for(notice_id) for notice_id in notice_ids])
-
-censored_tweets = (t for t in notice_tweets if is_withheld(t))
-
-for t in censored_tweets:
-    print t
