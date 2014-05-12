@@ -4,7 +4,6 @@ import os
 import util
 import urllib2
 from bs4 import BeautifulSoup
-#import os.path
 import config
 
 def notice_tweets_for(notice_id):

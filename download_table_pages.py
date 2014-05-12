@@ -3,6 +3,7 @@
 import urllib2
 import os.path
 import util
+import config
 
 def _fetch_page(page):
     CHILLING_EFFECTS_URL='https://www.chillingeffects.org/twitter?startat='
@@ -10,13 +11,14 @@ def _fetch_page(page):
     return urllib2.urlopen(CHILLING_EFFECTS_URL + str(startat)).read()
 
 def _page_file_path(page):
-    return 'table_pages/' + str(page)
+    return os.path.join(config.STORE_DIR, 'table_pages', str(page))
 
 def _already_downloaded_page(page):
-    return os.path.isfile(page_file_path(page))
+    return os.path.isfile(_page_file_path(page))
 
 def _save_page(page, source):
-    with open(page_file_path(page), 'w') as fp:
+    with open(_page_file_path(page), 'w') as fp:
+        fp.write(source)
 
 LAST_PAGE = 1704
 
