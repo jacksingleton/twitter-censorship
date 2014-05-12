@@ -6,9 +6,8 @@ import util
 import config
 
 def _fetch_page(page):
-    CHILLING_EFFECTS_URL='https://www.chillingeffects.org/twitter?startat='
     startat = page * 10
-    return urllib2.urlopen(CHILLING_EFFECTS_URL + str(startat)).read()
+    return urllib2.urlopen(config.CHILLING_EFFECTS_URL + str(startat)).read()
 
 def _page_file_path(page):
     return os.path.join(config.STORE_DIR, 'table_pages', str(page))
