@@ -1,6 +1,11 @@
-! filter out dmca tweets
+! filter out DMCA tweets
 ! create ui with screenshots
+! filter out account suspended
 
 ? what about new takedown notices
+? how often does the site update
+? can you see tweets censored by another country's laws
+? what remains after removing DMCA?
+? can we map censorship requests with news dates
 
 - twitter embed api does not work for withheld tweets
