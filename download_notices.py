@@ -2,7 +2,7 @@
 
 import os
 from bs4 import BeautifulSoup
-import urllib2
+import urllib
 import util
 import config
 
@@ -32,7 +32,7 @@ def _load_notice_from_file(notice_id):
         return fp.read()
 
 def _fetch_notice(notice_path):
-    fp = urllib2.urlopen('https://www.chillingeffects.org' + notice_path)
+    fp = urllib.urlopen('https://www.chillingeffects.org' + notice_path)
     return fp.read()
 
 def _save_notice(notice_id, notice_source):

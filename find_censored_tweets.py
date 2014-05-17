@@ -2,7 +2,7 @@
 
 import os
 import util
-import urllib2
+import urllib
 from bs4 import BeautifulSoup
 import config
 
@@ -14,12 +14,12 @@ def notice_tweets_for(notice_id):
 
 def check_withheld_on_twitter(tweet):
     try:
-        tweet_response = urllib2.urlopen('http://' + tweet).read()
+        tweet_response = urllib.urlopen('http://' + tweet).read()
         util.random_wait()
         tweet_soup = BeautifulSoup(tweet_response)
         withheld_div = tweet_soup.find('div', class_='tweet-user-withheld')
         return bool(withheld_div)
-    except urllib2.HTTPError:
+    except urllib.HTTPError:
         return False
 
 def check_withheld_on_filesystem(tweet):
