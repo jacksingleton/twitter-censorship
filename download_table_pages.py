@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import urllib
 import os.path
 import util
