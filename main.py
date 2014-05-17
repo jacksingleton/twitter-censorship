@@ -17,4 +17,4 @@ withheld_tweets = (tweet
     for tweet in parse_notice_tweets.parse_tweets_from(notice)
     if find_censored_tweets.is_withheld(tweet))
 
-for t in withheld_tweets: print t
+for t in withheld_tweets: print(t)
