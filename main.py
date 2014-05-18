@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 
 import os
+import logging
 
 import download_table_pages
 import download_notices
 import parse_notice_tweets
 import find_censored_tweets
+
+logging.basicConfig(level=logging.DEBUG)
 
 for path in ['store/table_pages', 'store/notices', 'store/tweets']:
     if not os.path.exists(path):

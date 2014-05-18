@@ -1,8 +1,15 @@
 import os.path
+import logging
+
+import requests
+
 import util
 import config
 
+logger = logging.getLogger(__name__)
+
 def _fetch_page(page):
+    logger.info('page=%d from=http', page)
     startat = page * 10
     response = requests.get(config.CHILLING_EFFECTS_URL + str(startat))
     source = response.text
@@ -13,7 +20,8 @@ def _page_file_path(page):
     return os.path.join(config.STORE_DIR, 'table_pages', str(page))
 
 def _load_page_from_file(page):
-    with open(_page_file_path(page)) as fp:
+    logger.info('page=%d from=file', page)
+    with open(_page_file_path(page), encoding='utf-8') as fp:
         return fp.read()
 
 def _already_downloaded_page(page):
