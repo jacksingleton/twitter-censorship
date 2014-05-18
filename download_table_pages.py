@@ -1,11 +1,13 @@
-import urllib
 import os.path
 import util
 import config
 
 def _fetch_page(page):
     startat = page * 10
-    return urllib.urlopen(config.CHILLING_EFFECTS_URL + str(startat)).read()
+    response = requests.get(config.CHILLING_EFFECTS_URL + str(startat))
+    source = response.text
+    logger.debug('source=%s', source)
+    return source
 
 def _page_file_path(page):
     return os.path.join(config.STORE_DIR, 'table_pages', str(page))
