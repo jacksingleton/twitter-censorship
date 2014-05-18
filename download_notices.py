@@ -30,8 +30,8 @@ def _load_notice_from_file(notice_id):
         return fp.read()
 
 def _fetch_notice(notice_path):
-    fp = urllib.urlopen('https://www.chillingeffects.org' + notice_path)
-    return fp.read()
+    conn = urllib.request.urlopen('https://www.chillingeffects.org' + notice_path)
+    return conn.read()
 
 def _save_notice(notice_id, notice_source):
     with open(_notice_path_for(notice_id), 'w') as fp:
