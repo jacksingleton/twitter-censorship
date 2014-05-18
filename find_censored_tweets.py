@@ -13,6 +13,7 @@ def notice_tweets_for(notice_id):
         return [t for t in fp.read().split('\n') if len(t) > 0]
 
 def check_withheld_on_twitter(tweet):
+    util.random_wait()
     try:
         tweet_response = requests.get('http://' + tweet).text
         util.random_wait()
@@ -47,7 +48,6 @@ def is_withheld(tweet):
     if withheld_from_filesystem is not None:
         return withheld_from_filesystem
     else:
-        util.random_wait()
         withheld_from_twitter = check_withheld_on_twitter(tweet)
         save_withheld_status(tweet, withheld_from_twitter)
         return withheld_from_twitter

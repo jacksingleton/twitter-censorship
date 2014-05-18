@@ -15,8 +15,8 @@ def _notice_paths_for(page_source):
     soup = BeautifulSoup(page_source)
     table = soup.find('table', border='1', cellpadding='5', width='100%')
     links = table.find_all('a')
-    notice_links = [ link for link in links if 'notice.cgi' in str(link) ]
-    return [ link['href'] for link in notice_links ]
+    notice_links = [link for link in links if 'notice.cgi' in str(link)]
+    return [link['href'] for link in notice_links]
 
 def _notice_id_from_path(notice_path):
     return notice_path.split('=')[-1]
@@ -32,6 +32,7 @@ def _load_notice_from_file(notice_id):
         return fp.read()
 
 def _fetch_notice(notice_path):
+    util.random_wait()
     response = requests.get('https://www.chillingeffects.org' + notice_path)
     return response.text
 
@@ -46,6 +47,5 @@ def fetch_notices(table_page):
         if _already_downloaded_notice(notice_id):
             yield _load_notice_from_file(notice_id)
         else:
-            util.random_wait()
             yield _save_notice(notice_id, _fetch_notice(notice_path))
 
