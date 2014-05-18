@@ -31,4 +31,5 @@ def fetch_table_pages():
         if _already_downloaded_page(page):
             yield _load_page_from_file(page)
         else:
+            util.random_wait()
             yield _save_page(page, _fetch_page(page))

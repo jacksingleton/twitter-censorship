@@ -46,6 +46,6 @@ def fetch_notices(table_page):
         if _already_downloaded_notice(notice_id):
             yield _load_notice_from_file(notice_id)
         else:
-            yield _save_notice(notice_id, _fetch_notice(notice_path))
             util.random_wait()
+            yield _save_notice(notice_id, _fetch_notice(notice_path))
 

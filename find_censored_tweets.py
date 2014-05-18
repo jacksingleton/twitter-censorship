@@ -1,10 +1,10 @@
 import os
-import util
-import urllib
+
 from bs4 import BeautifulSoup
 import requests
 
 import config
+import util
 
 def notice_tweets_for(notice_id):
     notice_tweets_path = os.path.join(
@@ -44,9 +44,10 @@ def save_withheld_status(tweet, withheld):
 
 def is_withheld(tweet):
     withheld_from_filesystem = check_withheld_on_filesystem(tweet)
-    if withheld_from_filesystem is None:
+    if withheld_from_filesystem is not None:
+        return withheld_from_filesystem
+    else:
+        util.random_wait()
         withheld_from_twitter = check_withheld_on_twitter(tweet)
         save_withheld_status(tweet, withheld_from_twitter)
         return withheld_from_twitter
-    else:
-        return withheld_from_filesystem
